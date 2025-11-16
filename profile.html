@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profile — Catering</title>
+  <link rel="stylesheet" href="styles/styles.css">
+  <script type="module" src="scripts/firebase.js"></script>
+  <script type="module" src="scripts/auth.js"></script>
+</head>
+<body>
+  <header class="nav">
+  <a class="brand" href="products.html">Catering</a>
+  <nav class="nav-links">
+    <a href="products.html">Products</a>
+    <a href="cart.html">Cart</a>
+    <a href="orders.html">My Orders</a>
+    <a href="profile.html">Profile</a>
+    <button id="logoutBtn" class="btn btn-danger">Logout</button>
+  </nav>
+</header>
+  <main class="container narrow">
+    <h1>My Profile</h1>
+    <form class="form" id="profileForm">
+      <label>Name <input id="name" required></label>
+      <label>Email <input id="email" disabled></label>
+      <button class="btn" type="submit">Save</button>
+    </form>
+  </main>
+  <script type="module" src="scripts/profile.js"></script>
+</body>
+</html>

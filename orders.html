@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Orders — Catering</title>
+  <link rel="stylesheet" href="styles/styles.css">
+  <script type="module" src="scripts/firebase.js"></script>
+  <script type="module" src="scripts/auth.js"></script>
+</head>
+<body>
+  <header class="nav">
+  <a class="brand" href="products.html">Catering</a>
+  <nav class="nav-links">
+    <a href="products.html">Products</a>
+    <a href="cart.html">Cart</a>
+    <a href="orders.html">My Orders</a>
+    <a href="profile.html">Profile</a>
+    <button id="logoutBtn" class="btn btn-danger">Logout</button>
+  </nav>
+</header>
+  <main class="container">
+    <h1>My Orders</h1>
+    <div id="orders"></div>
+  </main>
+  <script type="module" src="scripts/orders.js"></script>
+</body>
+</html>

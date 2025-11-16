@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register — Catering</title>
+  <link rel="stylesheet" href="styles/styles.css">
+  <script type="module" src="scripts/firebase.js"></script>
+</head>
+<body>
+  <main class="container narrow">
+    <h1>Create account</h1>
+    <form class="form" id="regForm">
+      <label>Name <input id="name" required></label>
+      <label>Email <input type="email" id="email" required></label>
+      <label>Password <input type="password" id="password" required minlength="6"></label>
+      <button class="btn" type="submit">Register</button>
+      <p class="muted">Have an account? <a href="login.html">Login</a></p>
+    </form>
+  </main>
+  <script type="module">
+    import { auth, db, createUserWithEmailAndPassword, doc, setDoc } from './scripts/firebase.js';
+    import { logEvent } from './scripts/logger.js';
+    document.getElementById('regForm').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      try{
+        const cred = await createUserWithEmailAndPassword(auth, email, password);
+        await setDoc(doc(db,'users', cred.user.uid), { name, email, role: 'user', createdAt: new Date() });
+        await logEvent('register_user', { email, name });
+        alert('Registered! You can login now.');
+        location.href = 'login.html';
+      }catch(err){ alert(err.message); }
+    });
+  </script>
+</body>
+</html>

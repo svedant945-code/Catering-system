@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Products — Catering</title>
+  <link rel="stylesheet" href="styles/styles.css">
+  <script type="module" src="scripts/firebase.js"></script>
+  <script type="module" src="scripts/auth.js"></script>
+</head>
+<body>
+  <header class="nav">
+  <a class="brand" href="products.html">Catering</a>
+  <nav class="nav-links">
+    <a href="products.html">Products</a>
+    <a href="cart.html">Cart</a>
+    <a href="orders.html">My Orders</a>
+    <a href="profile.html">Profile</a>
+    <button id="logoutBtn" class="btn btn-danger">Logout</button>
+  </nav>
+</header>
+  <main class="container">
+    <h1>Menu</h1>
+    <div id="products" class="grid"></div>
+  </main>
+  <div id="cartFloat" class="cart-float" title="View Cart" style="display:none;">
+    🛒 <span class="cart-count" id="cartCount">0</span>
+  </div>
+  <script type="module" src="scripts/store.js"></script>
+  <script type="module">
+    import { requireLogin } from './scripts/auth.js';
+    import { db, collection, getDocs } from './scripts/firebase.js';
+    const cartFloat = document.getElementById('cartFloat');
+    const cartCount = document.getElementById('cartCount');
+    async function updateCartCount() {
+      const user = await requireLogin();
+      const snap = await getDocs(collection(db,'carts',user.uid,'items'));
+      cartCount.textContent = snap.size;
+      cartFloat.style.display = snap.size > 0 ? 'flex' : 'none';
+    }
+    cartFloat.onclick = ()=> location.href='cart.html';
+    window.updateCartCount = updateCartCount;
+    setInterval(updateCartCount, 2000);
+    updateCartCount();
+  </script>
+</body>
+</html>

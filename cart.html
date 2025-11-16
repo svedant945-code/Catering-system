@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cart — Catering</title>
+  <link rel="stylesheet" href="styles/styles.css">
+  <script type="module" src="scripts/firebase.js"></script>
+  <script type="module" src="scripts/auth.js"></script>
+</head>
+<body>
+  <header class="nav">
+  <a class="brand" href="products.html">Catering</a>
+  <nav class="nav-links">
+    <a href="products.html">Products</a>
+    <a href="cart.html">Cart</a>
+    <a href="orders.html">My Orders</a>
+    <a href="profile.html">Profile</a>
+    <button id="logoutBtn" class="btn btn-danger">Logout</button>
+  </nav>
+</header>
+  <main class="container">
+    <h1>Your Cart</h1>
+    <table class="table" id="cartTable">
+      <thead><tr><th>Item</th><th>Price</th><th>Qty</th><th>Subtotal</th><th></th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div class="total" id="total"></div>
+    <button class="btn" id="placeOrderBtn">Place Order</button>
+  </main>
+  <script type="module" src="scripts/cart.js"></script>
+</body>
+</html>
